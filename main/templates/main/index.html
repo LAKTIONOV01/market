@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block cart_modal %}
+{% include 'carts/includes/cart_modal.html' %}
+{% endblock %}
+
+
+{% block css %}
+<!-- Стиль footer-a для главной страницы -->
+<link rel="stylesheet" href="{% static 'deps/css/my_footer_css.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-5 pt-5"><strong>Магазин мебели HOME</strong></h1>
+{% endblock %}
+
+
+{% block footer %}
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+    </div>
+</footer>
+{% endblock %}
+
