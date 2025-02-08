@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, UserChangesForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
@@ -16,6 +18,7 @@ def user_login(request):
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
+
             if user:
                 login(request, user)
                 return HttpResponseRedirect(reverse('main:home'))

@@ -11,14 +11,22 @@ def cart_add(request, product_slug):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user, cart_product=product)
         if carts.exists():
-            print(carts)
             cart = carts.first()
-            print(cart)
             if cart:
                 cart.cart_quantity += 1
                 cart.save()
         else:
             Cart.objects.create(user=request.user, cart_product=product, cart_quantity=1)
+
+    else:
+        carts = Cart.objects.filter(session_key=request.session.session_key, cart_product=product)
+        if carts.exists():
+            cart = carts.first()
+            if cart:
+                cart.cart_quantity += 1
+                cart.save()
+        else:
+            Cart.objects.create(session_key=request.session.session_key, cart_product=product, cart_quantity=1)
     return redirect(request.META['HTTP_REFERER'])
 
 
