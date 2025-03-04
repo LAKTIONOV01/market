@@ -15,16 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=tv=2_30&#n8^w6g@i(sx$9p^^v@f&(f!-5b6-7k@=9maunnzw'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -79,9 +70,9 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'homeproject',
-        'USER': 'home',
-        'PASSWORD': 'home',
+        'NAME': 'home-market',
+        'USER': 'owner',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '5432',
 
@@ -140,3 +131,9 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *
